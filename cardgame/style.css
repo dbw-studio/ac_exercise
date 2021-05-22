@@ -1,0 +1,128 @@
+body {
+  font-family: 'Nunito', sans-serif;
+}
+
+#cards {
+  /* flex box的核心是軸，也就是row */
+  display: flex;
+
+  /* 換行效果 */
+  flex-wrap: wrap;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.card {
+  /* 卡片在容器裡的排版 */
+  flex: 7% 1 1;
+  /* 每個 item 分配容器寬度。
+  三個值 flex-basis一排佔多少百分比，
+  flex-grow有剩餘的空間是否分配/填滿(0，意思是不要分配剩餘空間，改成1表示分配剩餘空間；
+  flex-grow: 1 代表平分，若是 flex-grow: 2 代表中間佔用的空間會是右邊的兩倍，這些加權是為了處理更精細的視覺效果)， 
+  flex-shrink: 當空間不夠用，是否收縮大小;  1=讓元素等比例收縮*/
+  height: 8vw;
+  /* 8vw表示佔8%的視窗高度，依視窗的寬度等比例變化 */
+  border: 2px solid #e0e0e0;
+
+  /* 卡片內部元素的排版 */
+  display: flex;
+  /* main axis */
+  flex-direction: column;
+  justify-content: space-around;
+
+  margin: 2px;
+  box-sizing: border-box;
+}
+
+.card img {
+  max-width: 30%;
+  align-self: center;
+  /* align-self是排交叉軸用的 */
+}
+
+.card p {
+  /* 瀏覽器預設的margin會造成文字超出邊框，所以用margin來調整 */
+  margin: 3px;
+  font-size: 10px;
+}
+
+.card p:last-child {
+  /* 將最後的文字轉方向  */
+  transform: rotate(180deg);
+}
+
+.back {
+  background: url('https://assets-lighthouse.alphacamp.co/uploads/image/file/9222/ExportedContentImage_00.png');
+  background-size: cover;
+}
+
+.paired {
+  background-color: #dae0e3;
+}
+
+#header {
+  display: flex;
+  margin: 0 auto;
+  padding-top: 1em;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 85%;
+}
+
+#header .title {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#header .title img {
+  max-width: 3em;
+}
+
+#header .title h2 {
+  padding-left: 0.5em;
+}
+
+#header .score {
+  margin: 0;
+  color: #6c90ac;
+}
+
+#header .tried {
+  margin-top: 0;
+}
+
+.wrong {
+  animation-name: wrongAnimation; /*命名*/
+  animation-duration: 0.2s; /*持續時間*/
+  animation-iteration-count: 5; /*重複次數*/
+}
+
+@keyframes wrongAnimation {
+  /* 在 keyframes 裡可以用 from 和 to 來指定動畫漸變起點/終點，這裡我們使用 to 來指定「當動畫發生時，該元素要逐漸加上黃色邊框」。 */
+  to {
+    border: 2px solid #ffd54f;
+  }
+}
+
+/** Game finished **/
+.completed {
+  position: absolute;
+  z-index: 999;
+  top: 33vh;
+  background-color: RGBA(232, 246, 254, 0.8);
+  width: 100vw;
+  padding: 50px 0;
+}
+.completed > p {
+  font-size: 2em;
+  font-weight: bold;
+  color: #6c90ac;
+  text-align: center;
+  margin: 0;
+}
+.completed > p:first-child {
+  font-size: 3em;
+  font-weight: 700;
+  color: #f4b3bd;
+}
